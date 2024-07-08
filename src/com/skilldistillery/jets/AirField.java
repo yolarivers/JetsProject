@@ -3,12 +3,12 @@ package com.skilldistillery.jets;
 import java.util.ArrayList;
 
 public class AirField {
-   
+ 
     private ArrayList<Jet> jets;
 
     public AirField() {
         jets = new ArrayList<>();
-
+        
         jets.add(new CargoJet("Lockheed C-130 Hercules", 541, 2360, 30000000.00));
         jets.add(new CargoJet("Boeing C-17 Globemaster III", 590, 2400, 218000000.00));
         jets.add(new FighterJet("F-22 Raptor", 1500, 1839, 150000000.00));
@@ -17,8 +17,8 @@ public class AirField {
     }
 
     public void listFleet() {
-        for (Jet jet : jets) {
-            System.out.println(jet);
+        for (int i = 0; i < jets.size(); i++) {
+            System.out.println((i + 1) + ". " + jets.get(i));
         }
     }
 
@@ -72,19 +72,13 @@ public class AirField {
         jets.add(jet);
     }
 
-    public void removeJet(String model) {
-        Jet jetToRemove = null;
-        for (Jet jet : jets) {
-            if (jet.getModel().equalsIgnoreCase(model)) {
-                jetToRemove = jet;
-                break;
-            }
+    public void removeJet(int index) {
+        if (index >= 0 && index < jets.size()) {
+            jets.remove(index);
         }
-        if (jetToRemove != null) {
-            jets.remove(jetToRemove);
-            System.out.println("Jet removed from fleet.");
-        } else {
-            System.out.println("Jet not found.");
-        }
+    }
+
+    public int getJetsSize() {
+        return jets.size();
     }
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class JetsApp {
 
-    
+  
     private AirField airfield = new AirField();
     private Scanner keyboard = new Scanner(System.in);
 
@@ -70,11 +70,12 @@ public class JetsApp {
     }
 
     private void addJetToFleet() {
+        System.out.println("\n--- Add a Jet to the Fleet ---");
         System.out.print("Enter jet type (Cargo, Fighter, Passenger): ");
         String type = keyboard.nextLine();
         System.out.print("Enter model: ");
         String model = keyboard.nextLine();
-        System.out.print("Enter speed: ");
+        System.out.print("Enter speed (in MPH): ");
         double speed = keyboard.nextDouble();
         System.out.print("Enter range: ");
         int range = keyboard.nextInt();
@@ -102,8 +103,17 @@ public class JetsApp {
     }
 
     private void removeJetFromFleet() {
-        System.out.print("Enter the model of the jet to remove: ");
-        String model = keyboard.nextLine();
-        airfield.removeJet(model);
+        System.out.println("\n--- Remove a Jet from the Fleet ---");
+        airfield.listFleet();
+        System.out.print("Enter the number of the jet to remove: ");
+        int index = keyboard.nextInt();
+        keyboard.nextLine(); 
+
+        if (index > 0 && index <= airfield.getJetsSize()) {
+            airfield.removeJet(index - 1);
+            System.out.println("Jet removed from fleet.");
+        } else {
+            System.out.println("Invalid jet number.");
+        }
     }
 }
