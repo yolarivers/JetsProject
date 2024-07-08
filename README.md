@@ -5,17 +5,6 @@
 
 The Jets Application is a Java-based console application that simulates a fleet of jets. The application allows users to view details about the fleet, fly the jets, add and remove jets from the fleet, and perform specific actions based on the type of jet (such as loading cargo or engaging in a dogfight).
 
-## Features
-
-- **List Fleet**: Displays all jets in the fleet with their details.
-- **Fly All Jets**: Simulates flying each jet in the fleet and shows how long each jet can fly based on its speed and range.
-- **View Fastest Jet**: Displays the jet with the highest speed in the fleet.
-- **View Jet with Longest Range**: Displays the jet with the longest range in the fleet.
-- **Load All Cargo Jets**: Calls the load cargo method for all cargo jets in the fleet.
-- **Dogfight**: Calls the dogfight method for all fighter jets in the fleet.
-- **Add a Jet to Fleet**: Allows the user to add a new jet to the fleet.
-- **Remove a Jet from Fleet**: Allows the user to remove a jet from the fleet by its number.
-- **Quit**: Exits the application.
 
 
 ## How to Use
@@ -49,3 +38,35 @@ The Jets Application is a Java-based console application that simulates a fleet 
 
 5. **Exiting the Application**:
    - Select option 9 from the main menu to quit the application.
+
+
+
+   ## Things Learned 
+
+
+
+### Interface Implementation
+
+- **CargoCarrier Interface**: Learned how to define and implement an interface, `CargoCarrier`, to provide specific functionality for cargo jets.
+- **Polymorphism**: Applied polymorphism to allow different types of jets to be managed through a common interface.
+
+### Object-Oriented Design
+
+- **Inheritance**: Utilized inheritance to create specific types of jets (`CargoJet`, `FighterJet`, `PassengerJet`) that extend a base class (`Jet`).
+- **Encapsulation**: Ensured proper encapsulation by making fields private and providing public methods for access and modification.
+
+### Collections
+
+- **ArrayList**: Used `ArrayList` to manage a dynamic collection of jets, providing flexibility in adding and removing jets from the fleet.
+
+### Application Structure
+
+- **Class Organization**: Organized the application into multiple classes, each with a clear responsibility, improving maintainability and readability.
+- **Main Loop**: Designed a main loop in `JetsApp` to continuously prompt the user for actions until they choose to quit.
+
+### Error Handling
+
+- **Input Validation**: Implemented input validation to ensure the user provides correct and meaningful data for jet attributes.
+- **Exception Handling**: Used try-catch blocks where appropriate to handle potential input errors gracefully.
+
+### Code Refactoring
