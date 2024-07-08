@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class JetsApp {
 
+    
     private AirField airfield = new AirField();
     private Scanner keyboard = new Scanner(System.in);
 
@@ -13,32 +14,30 @@ public class JetsApp {
     }
 
     public void launch() {
-        populateAirField(airfield);
-
         boolean running = true;
         while (running) {
             displayMenu();
             int choice = keyboard.nextInt();
-            keyboard.nextLine();
+            keyboard.nextLine(); 
 
             switch (choice) {
                 case 1:
-                    listFleet();
+                    airfield.listFleet();
                     break;
                 case 2:
-                    flyAllJets();
+                    airfield.flyAllJets();
                     break;
                 case 3:
-                    viewFastestJet();
+                    airfield.viewFastestJet();
                     break;
                 case 4:
-                    viewJetWithLongestRange();
+                    airfield.viewJetWithLongestRange();
                     break;
                 case 5:
-                    loadAllCargoJets();
+                    airfield.loadAllCargoJets();
                     break;
                 case 6:
-                    dogfight();
+                    airfield.dogfight();
                     break;
                 case 7:
                     addJetToFleet();
@@ -68,60 +67,6 @@ public class JetsApp {
         System.out.println("8. Remove a jet from Fleet");
         System.out.println("9. Quit");
         System.out.print("Enter your choice: ");
-    }
-
-   
-    private void listFleet() {
-        for (Jet jet : airfield.getJets()) {
-            System.out.println(jet);
-        }
-    }
-
-  
-    private void flyAllJets() {
-        for (Jet jet : airfield.getJets()) {
-            jet.fly();
-        }
-    }
-
-    private void viewFastestJet() {
-        Jet fastestJet = null;
-        for (Jet jet : airfield.getJets()) {
-            if (fastestJet == null || jet.getSpeed() > fastestJet.getSpeed()) {
-                fastestJet = jet;
-            }
-        }
-        if (fastestJet != null) {
-            System.out.println("The fastest jet is: " + fastestJet);
-        }
-    }
-
-    private void viewJetWithLongestRange() {
-        Jet longestRangeJet = null;
-        for (Jet jet : airfield.getJets()) {
-            if (longestRangeJet == null || jet.getRange() > longestRangeJet.getRange()) {
-                longestRangeJet = jet;
-            }
-        }
-        if (longestRangeJet != null) {
-            System.out.println("The jet with the longest range is: " + longestRangeJet);
-        }
-    }
-
-    private void loadAllCargoJets() {
-        for (Jet jet : airfield.getJets()) {
-            if (jet instanceof CargoJet) {
-                ((CargoJet) jet).loadCargo();
-            }
-        }
-    }
-
-    private void dogfight() {
-        for (Jet jet : airfield.getJets()) {
-            if (jet instanceof FighterJet) {
-                ((FighterJet) jet).fight();
-            }
-        }
     }
 
     private void addJetToFleet() {
@@ -159,26 +104,6 @@ public class JetsApp {
     private void removeJetFromFleet() {
         System.out.print("Enter the model of the jet to remove: ");
         String model = keyboard.nextLine();
-        Jet jetToRemove = null;
-        for (Jet jet : airfield.getJets()) {
-            if (jet.getModel().equalsIgnoreCase(model)) {
-                jetToRemove = jet;
-                break;
-            }
-        }
-        if (jetToRemove != null) {
-            airfield.getJets().remove(jetToRemove);
-            System.out.println("Jet removed from fleet.");
-        } else {
-            System.out.println("Jet not found.");
-        }
-    }
-
-    private void populateAirField(AirField airField) {
-        airField.addJet(new CargoJet("Lockheed C-130 Hercules", 541, 2360, 30000000.00));
-        airField.addJet(new CargoJet("Boeing C-17 Globemaster III", 590, 2400, 218000000.00));
-        airField.addJet(new FighterJet("F-22 Raptor", 1500, 1839, 150000000.00));
-        airField.addJet(new FighterJet("F-35 Lightning II", 1200, 1379, 89500000.00));
-        airField.addJet(new PassengerJet("Boeing 747", 570, 8300, 378500000.00));
+        airfield.removeJet(model);
     }
 }
